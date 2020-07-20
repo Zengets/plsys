@@ -1,0 +1,92 @@
+@import '~antd/lib/style/themes/default.less';
+
+.main {
+  width: 388px;
+  margin-top: -120px;
+a{
+  color: #ffffff
+}
+  @media screen and (max-width: @screen-sm) {
+    width: 95%;
+  }
+
+  @keyframes loadings {
+    from{
+      opacity: 1;
+      width: 1680px;
+      height: 1680px;
+    }to{
+      opacity: 0;
+      width: 0px;
+      height: 0px;
+    }
+  }
+  @keyframes loading {
+    from{
+      opacity: 0;
+    }to{
+      opacity: 1;
+    }
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 38px;
+    .logo {
+      height: 58px;
+      margin-right: 18px;
+      vertical-align: top;
+      opacity: 0;
+      animation: loading 2s ease-in 0.5s;
+      animation-fill-mode:forwards
+    }
+    .half{
+      display: block;
+      position: absolute;
+      left: 0;
+      z-index: 1;
+      top:0;
+      bottom: 0;
+      right: 0;
+      opacity: 0;
+      width: 0px;
+      height: 0px;
+      margin: auto;
+      animation: loadings 1.8s;
+    }
+    .title {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 27px;
+      padding-left: 8px;
+    }
+  }
+ 
+  .title{
+    color:"#fff"
+  }
+
+  .icon {
+    margin-left: 16px;
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 24px;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
+      color: @primary-color;
+    }
+  }
+
+  .other {
+    margin-top: 24px;
+    line-height: 22px;
+    text-align: left;
+
+    .register {
+      float: right;
+    }
+  }
+}

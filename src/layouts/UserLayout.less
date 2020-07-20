@@ -1,0 +1,68 @@
+@import '~antd/lib/style/themes/default.less';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background: @layout-body-background;
+  position: relative;
+  justify-content: center;
+  align-content: center;
+  canvas{
+    position: absolute;
+    left: 0;
+    z-index: 0;
+    top:0
+  }
+}
+
+.lang {
+  width: 100%;
+  height: 40px;
+  line-height: 44px;
+  text-align: right;
+  :global(.ant-dropdown-trigger) {
+    margin-right: 24px;
+  }
+}
+
+.content {
+  padding: 18px 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 388px;
+  margin: 0 auto;
+  @media screen and (max-width: @screen-sm) {
+    width: 95%;
+  }
+}
+
+.timetable{
+  position: absolute;
+  left:20px;
+  top:10px;
+  font-family: intfree;
+  color:#ffffff;
+  font-size: 16px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+  padding-bottom: 12px; 
+  z-index: 999;
+  font-family: Arial, Helvetica, sans-serif
+}
+.zifu{
+  width:10px;
+  border-radius: 4px;
+  float: left;
+  text-align: center;
+  height: 24px;
+  line-height: 24px;
+}
+.desc {
+  margin-top: 12px;
+  margin-bottom: 40px;
+  color: @text-color-secondary;
+  font-size: @font-size-base;
+}

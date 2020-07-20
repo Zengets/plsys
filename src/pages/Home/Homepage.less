@@ -1,0 +1,120 @@
+@import '~antd/lib/style/themes/default.less';
+@import '~@/utils/utils.less';
+
+.fatezr>div{
+  margin-right: 18px;
+  margin-bottom: 18px;
+  padding: 6px;
+  background-color: rgba(0,0,0,0.1);
+}
+.fatezr>div>p{
+  padding: 0;
+  margin: 0;
+}
+.oneline {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.redrows span,
+.redrows i {
+  color: #2196f3
+}
+
+.hoverable {
+  background-color: transparent;
+  color: #666;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.hoverable:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ffffff !important;
+  border-radius: 4px;
+  transition: all 0.4s;
+}
+
+.hoverables {
+  cursor: pointer;
+  min-height: 55px;
+  overflow: hidden;
+  padding: 0px 12px !important;
+  height: 55px;
+  overflow: hidden;
+  position: relative;
+}
+
+
+.hoverables:hover span+span{
+  font-size: 22px;
+  font-weight: bolder;
+}
+
+.hoverables .bacline {
+  position: absolute;
+  transition: all 0.4s;
+  left: 0;
+  top: 0;
+  height: 55px;
+  z-index: 0;
+}
+
+.hoverablec {
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0px 12px !important;
+  height: 36px;
+  overflow: hidden;
+  position: relative;
+}
+
+
+.hoverablec:hover span+span{
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.hoverablec .bacline {
+  position: absolute;
+  transition: all 0.4s;
+  left: 0;
+  top: 0;
+  height: 36px;
+  z-index: 0;
+}
+
+
+.rows:hover,
+.redrows:hover {
+  background-color: #c9d0d6;
+}
+
+.rows:hover span,
+.rows:hover i {
+  color: #405d97
+}
+
+.redrows:hover span,
+.redrows:hover i {
+  color: #2196f3
+}
+
+.innerHtml {
+  overflow: hidden;
+}
+
+.Homepage {
+  :global .ant-card-head-title {
+    flex: auto !important;
+    max-width: 200px !important;
+  }
+
+  .current {
+    border-bottom: red solid 2px;
+    padding-bottom: 7px;
+    color: red;
+  }
+}
