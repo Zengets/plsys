@@ -1,5 +1,5 @@
 import {
-  Table, Input, InputNumber, Popconfirm, Form, Divider, Modal, Tree, Button, Row, Col, Icon, Select, Alert, Tag, message, Card,Switch
+  Table, Input, InputNumber, Popconfirm, Form, Divider, Modal, Tree, Button, Row, Col, Icon, Select, Alert, Tag, message, Card, Switch
 } from 'antd';
 import { connect } from 'dva';
 import styles from './style.less';
@@ -166,9 +166,12 @@ class VerbPlan extends React.Component {
   }
 
   componentDidMount() {
+   
     this.resetData();
     this.setNewState('deviceTypequeryTreeList', null);
   }
+
+ 
 
   onSelectChange = (selectval, name) => {
     let { fields } = this.state;
@@ -319,7 +322,7 @@ class VerbPlan extends React.Component {
           submit: []
         },
         equipmentIds: {
-          value: undefined,
+          value: [],
           type: "table",
           title: "选择设备",
           keys: "equipmentIds",
@@ -658,19 +661,19 @@ class VerbPlan extends React.Component {
         ]),
         render: (text, record) => <div>
           {
-            record.planType == "0" ? <Switch checkedChildren="启用" unCheckedChildren="停用" checked={text=="1"?true:false} onChange={(check)=>{
-              this.setNewState("isUse",{status:check?"1":"2",id:record.id},()=>{
+            record.planType == "0" ? <Switch checkedChildren="启用" unCheckedChildren="停用" checked={text == "1" ? true : false} onChange={(check) => {
+              this.setNewState("isUse", { status: check ? "1" : "2", id: record.id }, () => {
                 this.resetData()
               })
 
-            }}/> : 
-            <span>{
-              text == "1" ? "启用" :
-                text == "2" ? "停用" :
-                  text == "3" ? "待执行" :
-                    text == "4" ? "执行中" :
-                      text == "5" ? "已结束" : ""
-            }</span>
+            }} /> :
+              <span>{
+                text == "1" ? "启用" :
+                  text == "2" ? "停用" :
+                    text == "3" ? "待执行" :
+                      text == "4" ? "执行中" :
+                        text == "5" ? "已结束" : ""
+              }</span>
           }
 
         </div>
@@ -902,9 +905,6 @@ class VerbPlan extends React.Component {
                   }}>
                   <a style={{ color: "#ff4800" }}>删除</a>
                 </Popconfirm>
-
-
-
               </div>
             }
             <Divider style={{ marginTop: 6 }} type="vertical"></Divider>
@@ -999,7 +999,7 @@ class VerbPlan extends React.Component {
                                 })
                               },
                               equipmentIds: {
-                                value: undefined,
+                                value: [],
                                 type: "table",
                                 title: "选择设备",
                                 keys: "equipmentIds",
@@ -1046,12 +1046,19 @@ class VerbPlan extends React.Component {
                                 title: "保养类型",
                                 keys: "maintainPlanType",
                                 requires: true,
-                                option: this.props.verb.maintainPlanType.map((item) => {
-                                  return {
-                                    name: item.dicName,
-                                    id: item.dicKey
-                                  }
-                                })
+                                option: record.planType == "1" ?
+                                  this.props.verb.maintainPlanTypeOnce.map((item) => {
+                                    return {
+                                      name: item.dicName,
+                                      id: item.dicKey
+                                    }
+                                  }) :
+                                  this.props.verb.maintainPlanTypePeriod.map((item) => {
+                                    return {
+                                      name: item.dicName,
+                                      id: item.dicKey
+                                    }
+                                  })
                               },
 
                               maintainHours: {
