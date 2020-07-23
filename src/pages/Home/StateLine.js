@@ -220,8 +220,24 @@ class StateLine extends Component {
                       </Col>
                       <Col {...coles} style={{ padding: 6 }}>
                         <Statistic
+                          title="夜班计划开线数"
+                          value={item.nightPlanTurnOnCount}
+                          prefix={<Icon type="file" />}
+                          suffix="台"
+                        />
+                      </Col>
+                      <Col {...coles} style={{ padding: 6 }}>
+                        <Statistic
                           title="白天实际开线数"
                           value={item.dayActualTurnOnCount}
+                          prefix={<Icon type="bulb" />}
+                          suffix="台"
+                        />
+                      </Col>
+                      <Col {...coles} style={{ padding: 6 }}>
+                        <Statistic
+                          title="夜班实际开线数"
+                          value={item.nightActualTurnOnCount}
                           prefix={<Icon type="bulb" />}
                           suffix="台"
                         />
@@ -234,22 +250,8 @@ class StateLine extends Component {
                           suffix="%"
                         />
                       </Col>
-                      <Col {...coles} style={{ padding: 6 }}>
-                        <Statistic
-                          title="夜班计划开线数"
-                          value={item.nightPlanTurnOnCount}
-                          prefix={<Icon type="file" />}
-                          suffix="台"
-                        />
-                      </Col>
-                      <Col {...coles} style={{ padding: 6 }}>
-                        <Statistic
-                          title="夜班实际开线数"
-                          value={item.nightActualTurnOnCount}
-                          prefix={<Icon type="bulb" />}
-                          suffix="台"
-                        />
-                      </Col>
+
+
                       <Col {...coles} style={{ padding: 6 }}>
                         <Statistic
                           title="夜班实际开线率"
@@ -558,8 +560,24 @@ class StateLine extends Component {
                         </Col>
                         <Col {...coles} style={{ padding: 6 }}>
                           <Statistic
+                            title="夜班计划开线数"
+                            value={item.nightPlanTurnOnCount}
+                            prefix={<Icon type="file" />}
+                            suffix="台"
+                          />
+                        </Col>
+                        <Col {...coles} style={{ padding: 6 }}>
+                          <Statistic
                             title="白班实际开线数"
                             value={item.dayActualTurnOnCount}
+                            prefix={<Icon type="bulb" />}
+                            suffix="台"
+                          />
+                        </Col>
+                        <Col {...coles} style={{ padding: 6 }}>
+                          <Statistic
+                            title="夜班实际开线数"
+                            value={item.nightActualTurnOnCount}
                             prefix={<Icon type="bulb" />}
                             suffix="台"
                           />
@@ -572,22 +590,8 @@ class StateLine extends Component {
                             suffix="%"
                           />
                         </Col>
-                        <Col {...coles} style={{ padding: 6 }}>
-                          <Statistic
-                            title="夜班计划开线数"
-                            value={item.nightPlanTurnOnCount}
-                            prefix={<Icon type="file" />}
-                            suffix="台"
-                          />
-                        </Col>
-                        <Col {...coles} style={{ padding: 6 }}>
-                          <Statistic
-                            title="夜班实际开线数"
-                            value={item.nightActualTurnOnCount}
-                            prefix={<Icon type="bulb" />}
-                            suffix="台"
-                          />
-                        </Col>
+
+
                         <Col {...coles} style={{ padding: 6 }}>
                           <Statistic
                             title="夜班实际开线率"
