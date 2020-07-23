@@ -1,7 +1,6 @@
 import { stringify } from 'qs';
 import request from '@/utils/request';
 
-
 //登入
 export async function fakeAccountLogin(params) {
   return request(`/rs/sysAccount/login`, {
@@ -18,7 +17,7 @@ export async function fakeAccountLoginOut(params) {
   });
 }
 
-//权限设置 
+//权限设置
 export async function AdminqueryAll(params) {
   return request(`/rs/sysPermission/queryAll`, {
     method: 'POST',
@@ -526,7 +525,6 @@ export async function equipmentdeleteByIds(params) {
   });
 }
 
-
 //验证-删除
 export async function equipmentdeleteByIdc(params) {
   return request(`/rs/userEquipment/deleteVerificationById`, {
@@ -639,7 +637,6 @@ export async function verbmsqueryByBillToExecuteId(params) {
     body: params,
   });
 }
-
 
 //保养任务列表-查看保养内容
 export async function verbtoqueryList(params) {
@@ -761,7 +758,7 @@ export async function queryAnalysis(params) {
   });
 }
 
-//设备图表 
+//设备图表
 export async function getCapacityAnalysis(params) {
   return request(`/rs/equipment/getCapacityAnalysis`, {
     method: 'POST',
@@ -769,15 +766,13 @@ export async function getCapacityAnalysis(params) {
   });
 }
 
-
-//设备图表 
+//设备图表
 export async function queryListByParentId(params) {
   return request(`/rs/sysDepartment/queryListByParentId`, {
     method: 'POST',
     body: params,
   });
 }
-
 
 //配件申请
 export async function getqueryList(params) {
@@ -835,7 +830,6 @@ export async function queryDiagram(params) {
   });
 }
 
-
 //班次列表-分页
 export async function getShiftPage(params) {
   return request(`/rs/sysShift/queryList`, {
@@ -887,7 +881,6 @@ export async function rslmodifyRepairUser(params) {
   });
 }
 
-
 //班次列表-分页
 export async function rslgetRepairDetail(params) {
   return request(`/rs/equipmentRepair/getRepairDetail`, {
@@ -935,7 +928,7 @@ export async function checksave(params) {
   });
 }
 
-//点检增/改 
+//点检增/改
 export async function checkqueryList(params) {
   return request(`/rs/equipmentPointCheckItem/queryList`, {
     method: 'POST',
@@ -959,7 +952,7 @@ export async function checkmenuqueryList(params) {
   });
 }
 
-//点检设置 
+//点检设置
 export async function checkmenudeleteById(params) {
   return request(`/rs/equipmentPointCheckItemRel/deleteById`, {
     method: 'POST',
@@ -1046,7 +1039,7 @@ export async function queryByDateAndWeekNum(params) {
   });
 }
 
-//设备维修 
+//设备维修
 export async function queryItemTaskByDayTaskId(params) {
   return request(`/rs/equipmentPointCheckItemDayTask/queryItemTaskByDayTaskId`, {
     method: 'POST',
@@ -1164,7 +1157,6 @@ export async function updatePointCheckUser(params) {
   });
 }
 
-
 //fate
 export async function TroublequeryTreeList(params) {
   return request(`/rs/equipmentFaultType/queryTreeList`, {
@@ -1205,7 +1197,6 @@ export async function hisToryqueryList(params) {
   });
 }
 
-
 //fate
 export async function queryPageList(params) {
   return request(`/rs/equipment/queryPageList`, {
@@ -1227,7 +1218,6 @@ export async function queryPageListPlus(params) {
     body: params,
   });
 }
-
 
 //fate
 export async function queryUseList(params) {
@@ -1268,7 +1258,6 @@ export async function AdminuserqueryAll(params) {
     body: params,
   });
 }
-
 
 //partsqueryList,partsqueryById,partsdeleteById,partssave
 export async function partsqueryList(params) {
@@ -1335,14 +1324,12 @@ export async function addcomsave(params) {
   });
 }
 
-
 export async function queryCondition(params) {
   return request(`/rs/sysUser/queryCondition`, {
     method: 'POST',
     body: params,
   });
 }
-
 
 export async function queryApplyReapairList(params) {
   return request(`/rs/equipment/queryApplyReapairList`, {
@@ -1357,7 +1344,6 @@ export async function queryOEE(params) {
     body: params,
   });
 }
-
 
 export async function queryJIA(params) {
   return request(`/rs/equipmentRepairHis/queryJIA`, {
@@ -1394,7 +1380,6 @@ export async function queryCount(params) {
   });
 }
 
-
 export async function exportFile(params) {
   return request(`/rs/equipment/exportFile`, {
     method: 'POST',
@@ -1402,7 +1387,7 @@ export async function exportFile(params) {
   });
 }
 
-//导入接口合计 
+//导入接口合计
 export async function uploadsysUser(params) {
   return request(`/rs/sysUser/importUser`, {
     method: 'POST',
@@ -1479,7 +1464,6 @@ export async function uploadproductMonthPlanDetail(params) {
   });
 }
 
-
 //首页
 export async function queryUrlList(params) {
   return request(`/rs/sysDic/queryUrlList `, {
@@ -1514,7 +1498,6 @@ export async function queryKnowledge(params) {
   });
 }
 
-
 export async function fbqueryMyList(params) {
   return request(`/rs/sysAssignment/queryMyList`, {
     method: 'POST',
@@ -1528,7 +1511,6 @@ export async function queryMyList(params) {
     body: params,
   });
 }
-
 
 export async function queryMessage(params) {
   return request(`/rs/sysUser/queryMessage`, {
@@ -1586,7 +1568,6 @@ export async function queryYesReview(params) {
     body: params,
   });
 }
-
 
 export async function fqueryDetaila(params) {
   return request(`/rs/assignmentUserExecute/queryDetail`, {
@@ -1687,7 +1668,6 @@ export async function queryShopsEquipChartLine(params) {
   });
 }
 
-
 //查询所有公司
 export async function cpyqueryAll(params) {
   return request(`/rs/sysCompany/queryAll`, {
@@ -1695,7 +1675,6 @@ export async function cpyqueryAll(params) {
     body: params,
   });
 }
-
 
 export async function queryByApprovalProcessType(params) {
   return request(`/rs/equipmentApprovalProcessNode/queryByApprovalProcessType`, {
@@ -1711,16 +1690,12 @@ export async function queryBySparePartsNoList(params) {
   });
 }
 
-
-
-
 export async function queryApprovalTypeCount(params) {
   return request(`/rs/taskBill/queryApprovalTypeCount`, {
     method: 'POST',
     body: params,
   });
 }
-
 
 export async function weiwaicreate(params) {
   return request(`/rs/externalRepair/create`, {
@@ -1729,14 +1704,12 @@ export async function weiwaicreate(params) {
   });
 }
 
-
 export async function association(params) {
   return request(`/rs/userEquipment/association`, {
     method: 'POST',
     body: params,
   });
 }
-
 
 export async function loanReturn(params) {
   return request(`/rs/equipmentApprovalProcess/loanReturn`, {
@@ -1781,14 +1754,12 @@ export async function EneDequeryList(params) {
   });
 }
 
-
 export async function createMaintainTask(params) {
   return request(`/rs/equipmentMaintainPlan/createMaintainTask`, {
     method: 'POST',
     body: params,
   });
 }
-
 
 //queryYes,queryNo,querysave,queryupdate
 export async function queryYes(params) {
@@ -2011,14 +1982,12 @@ export async function replydeleteById(params) {
   });
 }
 
-
 export async function missionconfirm(params) {
   return request(`/rs/equipmentMaintainBillToExecute/confirm`, {
     method: 'POST',
     body: params,
   });
 }
-
 
 export async function csqueryQrCode(params) {
   return request(`/rs/sysElectricityMeter/queryQrCode`, {
@@ -2054,11 +2023,10 @@ export async function checkRepair(params) {
 
 export async function checkRepairAfter(params) {
   return request(`/rs/equipmentPointCheckException/checkRepairAfter`, {
-      method: 'POST',
-      body: params,
+    method: 'POST',
+    body: params,
   });
 }
-
 
 export async function checkSsave(params) {
   return request(`/rs/equipmentPointCheckPlan/save`, {
@@ -2078,7 +2046,6 @@ export async function checkssave(params) {
     body: params,
   });
 }
-
 
 export async function checksdeleteById(params) {
   return request(`/rs/equipmentPointCheckItem/deleteById`, {
@@ -2190,6 +2157,13 @@ export async function queryFaultTypeFault(params) {
 
 export async function queryFaultTypeFaultByCompanyId(params) {
   return request(`/rs/equipmentRepairHis/queryFaultTypeFaultByCompanyId`, {
+    method: 'POST',
+    body: params,
+  });
+}
+
+export async function queryFaultRate(params) {
+  return request(`/rs/equipmentRepairHis/queryFaultRate`, {
     method: 'POST',
     body: params,
   });
@@ -2307,7 +2281,6 @@ export async function replaceUser(params) {
   });
 }
 
-
 export async function queryDailyReport(params) {
   return request(`/rs/equipmentShiftProduct/queryDailyReport`, {
     method: 'POST',
@@ -2391,7 +2364,6 @@ export async function aexportFileCheck(params) {
   });
 }
 
-
 export async function bexportFileCheck(params) {
   return request(`/rs/shopProductMonthReportDetail/exportFileCheck`, {
     method: 'POST',
@@ -2454,13 +2426,3 @@ export async function queryInOrNotByShopId(params) {
     body: params,
   });
 }
-
-
-
-
-
-
-
-
-
-
