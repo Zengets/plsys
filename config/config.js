@@ -8,20 +8,27 @@ import slash from 'slash2';
 const { pwa, primaryColor } = defaultSettings;
 const { NODE_ENV, APP_TYPE, TEST, npm_config_argv } = process.env;
 
-
 let allOk = JSON.parse(npm_config_argv).original,
   allStr = allOk[allOk.length - 1];
 
-let IpAndPort = allStr.indexOf("4399") != -1 ? 'http://172.21.3.137:8400/' :
-  allStr.indexOf("8001") != -1 ? 'http://172.21.3.124:8400/' :
-    allStr.indexOf("8400") != -1 ? 'http://101.132.66.226:8400/' :
-      allStr.indexOf("3600") != -1 ? 'http://172.21.3.211:8400/' :
-        allStr.indexOf("3700") != -1 ? 'http://172.21.3.85:8080/' :
-          allStr.indexOf("3707") != -1 ? 'http://172.21.3.102:8086/' :
-            allStr.indexOf("8888") != -1 ? 'http://172.21.3.74:8080/' :
-              allStr.indexOf("8448") != -1 ? 'http://172.21.3.134:8081/' :
-                "http://172.21.3.51:8400/";
-
+let IpAndPort =
+  allStr.indexOf('4399') != -1
+    ? 'http://172.21.3.137:8400/'
+    : allStr.indexOf('8001') != -1
+    ? 'http://172.21.3.155:8400/'
+    : allStr.indexOf('8400') != -1
+    ? 'http://101.132.66.226:8400/'
+    : allStr.indexOf('3600') != -1
+    ? 'http://172.21.3.211:8400/'
+    : allStr.indexOf('3700') != -1
+    ? 'http://172.21.3.148:8080/'
+    : allStr.indexOf('3707') != -1
+    ? 'http://172.21.3.102:8086/'
+    : allStr.indexOf('8888') != -1
+    ? 'http://172.21.3.74:8080/'
+    : allStr.indexOf('8448') != -1
+    ? 'http://172.21.3.134:8081/'
+    : 'http://172.21.3.51:8400/';
 
 const plugins = [
   [
@@ -43,20 +50,20 @@ const plugins = [
       },
       pwa: pwa
         ? {
-          workboxPluginMode: 'InjectManifest',
-          workboxOptions: {
-            importWorkboxFrom: 'local',
-          },
-        }
+            workboxPluginMode: 'InjectManifest',
+            workboxOptions: {
+              importWorkboxFrom: 'local',
+            },
+          }
         : {},
-      ...(!TEST && os.platform() === 'darwin'
+       ...(!TEST && os.platform() === 'darwin'
         ? {
-          dll: {
-            include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch'],
-            exclude: ['@babel/runtime'],
-          },
-          hardSource: false,
-        }
+            dll: {
+              include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch'],
+              exclude: ['@babel/runtime'],
+            },
+            hardSource: false,
+          }
         : {}),
     },
   ],
@@ -103,7 +110,7 @@ export default {
       pathRewrite: { '^/rs': '' },
     },
     '/staticfile/': {
-      target: "http://172.21.3.2",
+      target: 'http://172.21.3.2',
       changeOrigin: true,
       proxyTimeout: 24 * 60 * 1000,
       timeout: 24 * 60 * 1000,
@@ -137,7 +144,7 @@ export default {
       return localName;
     },
   },
-  publicPath: "./",
+  publicPath: './',
   history: 'hash',
   manifest: {
     basePath: './',

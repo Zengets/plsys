@@ -4,7 +4,7 @@
 import {
     deviceTypequeryTreeList, queryDiagram, queryOEE, queryJIA, queryMTTR, queryMTBF, querySTOP, queryCondition, Energychart,
     queryTypeFault, queryTypeFaultByCompanyId, queryFaultTypeFault, queryFaultTypeFaultByCompanyId, queryTaskRate, queryDailyReport,
-    queryMonthlyReport
+    queryMonthlyReport, queryFaultRate
 
 } from '@/services/rs.js'
 
@@ -30,7 +30,7 @@ export default {
         Energychart: [],
         queryTypeFault: {},
         queryTypeFaultByCompanyId: [],
-        queryFaultTypeFault: {},
+        queryFaultTypeFault: [],
         queryFaultTypeFaultByCompanyId: [],
         main: [],
         mains: [],
@@ -39,6 +39,7 @@ export default {
         detail: [],
         details: [],
         shiftList: [],
+        queryFaultRate: [],
         code: {}
     },
     effects: {
@@ -115,6 +116,19 @@ export default {
             })
             return responese.code == "0000"
         },
+        *queryFaultRate({ payload }, { call, put }) {//datalist
+            const responese = yield call(queryFaultRate, payload);
+            yield put({
+                type: 'updateState',
+                payload: { queryFaultTypeFault: responese.data.table ? responese.data.table : [] }
+            })
+            yield put({
+                type: 'updateState',
+                payload: { companyList: responese.data.companyList ? responese.data.companyList : [] }
+            })
+            return responese.code == "0000"
+        },
+
         *queryFaultTypeFaultByCompanyId({ payload }, { call, put }) {//datalist
             const responese = yield call(queryFaultTypeFaultByCompanyId, payload);
             yield put({
