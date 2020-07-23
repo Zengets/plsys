@@ -39,10 +39,10 @@ class ChartChild extends Component {
     let allData = itemz;
     let res = {};
     let xData = allData
-      ? allData.map((item, i) => {
-        return this.props.keys == '0' ? item.equipmentModel : item.faultTypeName;
-      })
-      : null,
+        ? allData.map((item, i) => {
+            return this.props.keys == '0' ? item.equipmentModel : item.faultTypeName;
+          })
+        : null,
       repairCount = allData.map((item, i) => {
         return item.repairCount;
       }),
@@ -185,49 +185,49 @@ class ChartChild extends Component {
                 columns={
                   keys == '0'
                     ? [
-                      {
-                        title: '设备型号',
-                        dataIndex: 'equipmentModel',
-                        key: 'equipmentModel',
-                      },
-                      {
-                        title: '维修次数',
-                        dataIndex: 'repairCount',
-                        key: 'repairCount',
-                      },
-                      {
-                        title: '累计维修次数',
-                        dataIndex: 'totalRepairCount',
-                        key: 'totalRepairCount',
-                      },
-                      {
-                        title: '故障占比(%)',
-                        dataIndex: 'totalRepairRate',
-                        key: 'totalRepairRate',
-                      },
-                    ]
+                        {
+                          title: '设备型号',
+                          dataIndex: 'equipmentModel',
+                          key: 'equipmentModel',
+                        },
+                        {
+                          title: '维修次数',
+                          dataIndex: 'repairCount',
+                          key: 'repairCount',
+                        },
+                        {
+                          title: '累计维修次数',
+                          dataIndex: 'totalRepairCount',
+                          key: 'totalRepairCount',
+                        },
+                        {
+                          title: '故障占比(%)',
+                          dataIndex: 'totalRepairRate',
+                          key: 'totalRepairRate',
+                        },
+                      ]
                     : [
-                      {
-                        title: '故障名称',
-                        dataIndex: 'faultTypeName',
-                        key: 'faultTypeName',
-                      },
-                      {
-                        title: '故障次数',
-                        dataIndex: 'repairCount',
-                        key: 'repairCount',
-                      },
-                      {
-                        title: '累计故障次数',
-                        dataIndex: 'totalRepairCount',
-                        key: 'totalRepairCount',
-                      },
-                      {
-                        title: '故障占比(%)',
-                        dataIndex: 'totalRepairRate',
-                        key: 'totalRepairRate',
-                      },
-                    ]
+                        {
+                          title: '故障名称',
+                          dataIndex: 'faultTypeName',
+                          key: 'faultTypeName',
+                        },
+                        {
+                          title: '故障次数',
+                          dataIndex: 'repairCount',
+                          key: 'repairCount',
+                        },
+                        {
+                          title: '累计故障次数',
+                          dataIndex: 'totalRepairCount',
+                          key: 'totalRepairCount',
+                        },
+                        {
+                          title: '故障占比(%)',
+                          dataIndex: 'totalRepairRate',
+                          key: 'totalRepairRate',
+                        },
+                      ]
                 }
                 dataSource={data}
               />
@@ -258,8 +258,8 @@ class ChartChild extends Component {
             </Col>
           </Row>
         ) : (
-            <Empty style={{ marginTop: 18 }} />
-          )}
+          <Empty style={{ marginTop: 18 }} />
+        )}
       </div>
     );
   }
@@ -279,19 +279,19 @@ class ChartFault extends Component {
       key: '0',
       postData: {
         companyId: '', //公司id
-        unit: [''],
+        unit: ['周'],
       },
       postDatas: {
         companyId: '', //公司id
-        unit: [''],
+        unit: ['周'],
       },
       postDatac: {
         companyId: '', //公司id
-        unit: [''],
+        unit: ['周'],
       },
       postDataz: {
         companyId: '', //公司id
-        unit: [''],
+        unit: ['周'],
       },
     };
   }
@@ -317,20 +317,22 @@ class ChartFault extends Component {
 
   componentDidMount() {
     this.resetData('queryTypeFault', 'postData');
-    console.log(this.props.chart.queryFaultTypeFault)
+    console.log(this.props.chart.queryFaultTypeFault);
   }
 
   getOption(allData) {
+    let res = {};
 
-
-    let res = {}
-
-
-    let xData = allData && allData.map((item, i) => {
-      return item.date
-    }), yData = allData && allData.map((item, i) => {
-      return item.value
-    })
+    let xData =
+        allData &&
+        allData.map((item, i) => {
+          return item.date;
+        }),
+      yData =
+        allData &&
+        allData.map((item, i) => {
+          return item.value;
+        });
 
     res = {
       title: {
@@ -339,79 +341,82 @@ class ChartFault extends Component {
         x: '0',
         textStyle: {
           fontSize: 16,
-          fontWeight: "noraml",
-          color: "#f50"
-        }
+          fontWeight: 'noraml',
+          color: '#f50',
+        },
       },
       tooltip: {
         trigger: 'axis',
         axisPointer: {
           type: 'cross',
           crossStyle: {
-            color: '#999'
-          }
-        }
+            color: '#999',
+          },
+        },
       },
-      dataZoom: [{
-        type: 'inside'
-      }, {
-        type: 'slider'
-      }],
+      dataZoom: [
+        {
+          type: 'inside',
+        },
+        {
+          type: 'slider',
+        },
+      ],
       toolbox: {
         feature: {
           dataView: { show: true, readOnly: false },
           magicType: { show: true, type: ['line', 'bar'] },
           restore: { show: true },
-          saveAsImage: { show: false }
-        }
+          saveAsImage: { show: false },
+        },
       },
       legend: {
-        data: ["占比"],
-        left: "center",
+        data: ['占比'],
+        left: 'center',
       },
       xAxis: [
         {
           type: 'category',
           data: xData,
           axisPointer: {
-            type: 'shadow'
-          }
-        }
+            type: 'shadow',
+          },
+        },
       ],
       yAxis: [
         {
           type: 'value',
-          name: "占比",
+          name: '占比',
           axisLabel: {
-            formatter: '{value} %'
-          }
-        }
+            formatter: '{value} %',
+          },
+        },
       ],
       series: [
         {
-          name: "占比",
+          name: '占比',
           type: 'bar',
           data: yData,
           label: {
             normal: {
               formatter: '{c} %',
-              show: true
+              show: true,
             },
           },
-        }
-      ]
-    }
-    return res
-
+        },
+      ],
+    };
+    return res;
   }
 
   handleChange(tag, checked) {
     let { key, postData, postDatas, postDatac } = this.state;
     const post = key == '0' ? postData : key == '1' ? postDatas : postDatac;
-    const postName = key == '0' ? 'postData' : key == '1' ? 'postDatas' : "postDatac";
-    const url = key == '0' ? 'queryTypeFault' : key == '1' ? 'queryFaultTypeFault' : "queryFaultRate";
+    const postName = key == '0' ? 'postData' : key == '1' ? 'postDatas' : 'postDatac';
+    const url =
+      key == '0' ? 'queryTypeFault' : key == '1' ? 'queryFaultTypeFault' : 'queryFaultRate';
     const { unit } = post;
-    const nextSelectedTags = checked ? [tag] : [];
+    const nextSelectedTags = checked ? [tag] : [''];
     this.setState(
       {
         [postName]: {
@@ -460,10 +465,16 @@ class ChartFault extends Component {
     }
   };
 
-  change = (ifnext) => {
+  change = ifnext => {
     let { key } = this.state;
-    const post = key == '0' ? this.state.postData : key == '1' ? this.state.postDatas : this.state.postDatac;
-    const url = key == '0' ? 'queryTypeFaultByCompanyId' : key == '1' ? 'queryFaultTypeFaultByCompanyId' : "queryFaultRate";
+    const post =
+      key == '0' ? this.state.postData : key == '1' ? this.state.postDatas : this.state.postDatac;
+    const url =
+      key == '0'
+        ? 'queryTypeFaultByCompanyId'
+        : key == '1'
+        ? 'queryFaultTypeFaultByCompanyId'
+        : 'queryFaultRate';
     this.setNewState(
       url,
       {
@@ -472,7 +483,7 @@ class ChartFault extends Component {
       },
       () => {
         if (!ifnext) {
-          return
+          return;
         }
         this.setState({
           visible: true,
@@ -491,16 +502,15 @@ class ChartFault extends Component {
       {
         queryTypeFault,
         companyList,
-        queryFaultTypeFault,//table getoption()
+        queryFaultTypeFault, //table getoption()
         queryTypeFaultByCompanyId,
         queryFaultTypeFaultByCompanyId,
       } = this.props.chart;
 
     let callback = key => {
       this.setState({ key }, () => {
-        this.change()
+        this.handleChange("周",true);
       });
-
     };
 
     return (
@@ -529,19 +539,19 @@ class ChartFault extends Component {
           <Divider />
           {key == '0'
             ? queryTypeFaultByCompanyId.map((item, i) => {
-              return (
-                <Card key={i} title={item.key} style={{ marginBottom: 12 }}>
-                  <ChartChild data={item.value} keys={key} ifs={'0'} />
-                </Card>
-              );
-            })
+                return (
+                  <Card key={i} title={item.key} style={{ marginBottom: 12 }}>
+                    <ChartChild data={item.value} keys={key} ifs={'0'} />
+                  </Card>
+                );
+              })
             : queryFaultTypeFaultByCompanyId.map((item, i) => {
-              return (
-                <Card key={i} title={item.key} style={{ marginBottom: 12 }}>
-                  <ChartChild data={item.value} keys={key} ifs={'0'} />
-                </Card>
-              );
-            })}
+                return (
+                  <Card key={i} title={item.key} style={{ marginBottom: 12 }}>
+                    <ChartChild data={item.value} keys={key} ifs={'0'} />
+                  </Card>
+                );
+              })}
         </Drawer>
         <div className={styles.container}>
           <Card
@@ -551,9 +561,11 @@ class ChartFault extends Component {
                 style={{ cursor: 'pointer' }}
                 key={tag}
                 checked={
-                  key == '0' ? postData.unit.indexOf(tag) > -1 :
-                    key == '1' ? postDatas.unit.indexOf(tag) > -1 :
-                      postDatac.unit.indexOf(tag) > -1
+                  key == '0'
+                    ? postData.unit.indexOf(tag) > -1
+                    : key == '1'
+                    ? postDatas.unit.indexOf(tag) > -1
+                    : postDatac.unit.indexOf(tag) > -1
                 }
                 onChange={checked => this.handleChange(tag, checked)}
               >
@@ -567,11 +579,23 @@ class ChartFault extends Component {
                   style={{ width: '100%' }}
                   placeholder="选择组织"
                   allowClear
-                  value={key == '0' ? postData.companyId : key == '1' ? postDatas.companyId : postDatac.companyId}
+                  value={
+                    key == '0'
+                      ? postData.companyId
+                      : key == '1'
+                      ? postDatas.companyId
+                      : postDatac.companyId
+                  }
                   onChange={value => {
                     const post = key == '0' ? postData : key == '1' ? postDatas : postDatac;
-                    const postName = key == '0' ? 'postData' : key == '1' ? 'postDatas' : "postDatac";
-                    const url = key == '0' ? 'queryTypeFault' : key == '1' ? 'queryFaultTypeFault' : "queryFaultRate";
+                    const postName =
+                      key == '0' ? 'postData' : key == '1' ? 'postDatas' : 'postDatac';
+                    const url =
+                      key == '0'
+                        ? 'queryTypeFault'
+                        : key == '1'
+                        ? 'queryFaultTypeFault'
+                        : 'queryFaultRate';
                     this.setState(
                       {
                         [postName]: {
@@ -603,6 +627,7 @@ class ChartFault extends Component {
                       keys={'0'}
                       data={queryTypeFault}
                       ifs={1}
+                      change={key => this.change(key)}
                       postData={postData}
                       postDatas={postDatas}
                       companyList={companyList}
@@ -615,6 +640,7 @@ class ChartFault extends Component {
                       keys={'1'}
                       data={queryFaultTypeFault}
                       ifs={1}
+                      change={key => this.change(key)}
                       postData={postData}
                       postDatas={postDatas}
                       companyList={companyList}
@@ -625,12 +651,11 @@ class ChartFault extends Component {
                   {this.state.key == '2' && (
                     <div>
                       <Spin spinning={this.props.loading.effects['chart/queryFaultRate']}>
-
-                        <ReactEcharts style={{ height: 500, marginTop: 12 }} option={this.getOption(queryFaultTypeFault)}></ReactEcharts>
-
+                        <ReactEcharts
+                          style={{ height: 500, marginTop: 12 }}
+                          option={this.getOption(queryFaultTypeFault)}
+                        />
                       </Spin>
-
-
                     </div>
                   )}
                 </TabPane>
@@ -638,7 +663,7 @@ class ChartFault extends Component {
             </Row>
           </Card>
         </div>
-      </div >
+      </div>
     );
   }
 }

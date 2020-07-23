@@ -35,8 +35,9 @@ const { TreeNode } = Tree;
 const InputGroup = Input.Group;
 const { Option } = Select;
 
-@connect(({ repair, loading }) => ({
+@connect(({ repair, publicmodel, loading }) => ({
   repair,
+  publicmodel,
   submitting: loading.effects['repair/repairqueryList'],
 }))
 class RepairList extends React.Component {
@@ -240,7 +241,7 @@ class RepairList extends React.Component {
         },
         () => {
           this.setNewState(postUrl, this.state.postData);
-          this.setNewState('queryCondition', { companyId: selectedKeys[0] }, () => { });
+          this.setNewState('queryCondition', { companyId: selectedKeys[0] }, () => {});
         }
       );
       return;
@@ -402,8 +403,8 @@ class RepairList extends React.Component {
 
         case 'repairCountChart':
           let xData = allData.map((item, i) => {
-            return item.name;
-          }),
+              return item.name;
+            }),
             yData = allData.map((item, i) => {
               return item.value;
             });
@@ -487,12 +488,12 @@ class RepairList extends React.Component {
     };
 
     let getsearchbox = key => {
-      if (this.child) {
-        return this.child.getColumnSearchProps(key);
-      } else {
-        return null;
-      }
-    },
+        if (this.child) {
+          return this.child.getColumnSearchProps(key);
+        } else {
+          return null;
+        }
+      },
       getselectbox = (key, option) => {
         if (this.child) {
           return this.child.getColumnSelectProps(key, option);
@@ -525,376 +526,376 @@ class RepairList extends React.Component {
     const columns =
       this.props.match.params.key == '1'
         ? [
-          {
-            title: '工单号',
-            dataIndex: 'taskNo',
-            key: 'taskNo',
-            ...getsearchbox('taskNo'),
-          },
-          {
-            title: '故障时间',
-            dataIndex: 'faultTime',
-            key: 'faultTime',
-            ...getdaterangebox('startTime', 'endTime'),
-          },
-          {
-            title: '报修人',
-            dataIndex: 'applyRepairUserName',
-            key: 'applyRepairUserName',
-          },
-          {
-            title: '班次',
-            dataIndex: 'shiftName',
-            key: 'shiftName',
-          },
-          {
-            title: '确认人',
-            dataIndex: 'confirmUserName',
-            key: 'confirmUserName',
-          },
-          {
-            title: '故障名称',
-            dataIndex: 'faultTypeName',
-            key: 'faultTypeName',
-            render: (text, record) => {
-              return <span>{text}</span>;
+            {
+              title: '工单号',
+              dataIndex: 'taskNo',
+              key: 'taskNo',
+              ...getsearchbox('taskNo'),
             },
-            ...getsearchbox('faultTypeName'),
-          },
-          {
-            title: '故障级别',
-            dataIndex: 'faultLevelName',
-            key: 'faultLevelName',
-            render: text => <span>{text}</span>,
-          },
-          {
-            title: '维修类型',
-            width: 110,
-            dataIndex: 'repairTypeName',
-            key: 'repairTypeName',
-            ...getselectbox('repairType', repairTypeList),
-          },
-          {
-            title: '设备编号',
-            dataIndex: 'equipmentNo',
-            key: 'equipmentNo',
-            ...getsearchbox('equipmentNo'),
-          },
-          {
-            title: '设备位置号',
-            dataIndex: 'positionNo',
-            key: 'positionNo',
-            ...getsearchbox('positionNo'),
-          },
-          {
-            title: '设备名',
-            dataIndex: 'equipmentName',
-            key: 'equipmentName',
-          },
-          {
-            title: '设备型号',
-            dataIndex: 'equipmentModel',
-            key: 'equipmentModel',
-          },
-          {
-            title: '公司',
-            dataIndex: 'companyName',
-            key: 'companyName',
-            ...getselectbox(
-              'companyId',
-              companyList
-                ? companyList.map(item => {
-                  return {
-                    dicName: item.companyName,
-                    dicKey: item.id,
-                  };
-                })
-                : []
-            ),
-          },
-          {
-            title: '产品线',
-            dataIndex: 'shopName',
-            key: 'shopName',
-            ...getselectbox(
-              'shopId',
-              shopList &&
-              shopList.map(item => {
-                return {
-                  dicName: item.shopName,
-                  dicKey: item.id,
-                };
-              })
-            ),
-          },
-          {
-            title: '维修状态',
-            dataIndex: 'statusName',
-            key: 'statusName',
-            ...getselectbox('status', repairStatusList),
-            render: text => (
-              <span
-                style={{
-                  color:
-                    text == '待维修'
-                      ? '#666'
-                      : text == '维修中'
+            {
+              title: '故障时间',
+              dataIndex: 'faultTime',
+              key: 'faultTime',
+              ...getdaterangebox('startTime', 'endTime'),
+            },
+            {
+              title: '报修人',
+              dataIndex: 'applyRepairUserName',
+              key: 'applyRepairUserName',
+            },
+            {
+              title: '班次',
+              dataIndex: 'shiftName',
+              key: 'shiftName',
+            },
+            {
+              title: '确认人',
+              dataIndex: 'confirmUserName',
+              key: 'confirmUserName',
+            },
+            {
+              title: '故障名称',
+              dataIndex: 'faultTypeName',
+              key: 'faultTypeName',
+              render: (text, record) => {
+                return <span>{text}</span>;
+              },
+              ...getsearchbox('faultTypeName'),
+            },
+            {
+              title: '故障级别',
+              dataIndex: 'faultLevelName',
+              key: 'faultLevelName',
+              render: text => <span>{text}</span>,
+            },
+            {
+              title: '维修类型',
+              width: 110,
+              dataIndex: 'repairTypeName',
+              key: 'repairTypeName',
+              ...getselectbox('repairType', repairTypeList),
+            },
+            {
+              title: '设备编号',
+              dataIndex: 'equipmentNo',
+              key: 'equipmentNo',
+              ...getsearchbox('equipmentNo'),
+            },
+            {
+              title: '设备位置号',
+              dataIndex: 'positionNo',
+              key: 'positionNo',
+              ...getsearchbox('positionNo'),
+            },
+            {
+              title: '设备名',
+              dataIndex: 'equipmentName',
+              key: 'equipmentName',
+            },
+            {
+              title: '设备型号',
+              dataIndex: 'equipmentModel',
+              key: 'equipmentModel',
+            },
+            {
+              title: '公司',
+              dataIndex: 'companyName',
+              key: 'companyName',
+              ...getselectbox(
+                'companyId',
+                companyList
+                  ? companyList.map(item => {
+                      return {
+                        dicName: item.companyName,
+                        dicKey: item.id,
+                      };
+                    })
+                  : []
+              ),
+            },
+            {
+              title: '产品线',
+              dataIndex: 'shopName',
+              key: 'shopName',
+              ...getselectbox(
+                'shopId',
+                shopList &&
+                  shopList.map(item => {
+                    return {
+                      dicName: item.shopName,
+                      dicKey: item.id,
+                    };
+                  })
+              ),
+            },
+            {
+              title: '维修状态',
+              dataIndex: 'statusName',
+              key: 'statusName',
+              ...getselectbox('status', repairStatusList),
+              render: text => (
+                <span
+                  style={{
+                    color:
+                      text == '待维修'
+                        ? '#666'
+                        : text == '维修中'
                         ? 'green'
                         : text == '待验证'
-                          ? '#f50'
-                          : '#000',
-                }}
-              >
-                {text}
-              </span>
-            ),
-          },
-          {
-            title: (
-              <span
-                style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-              >
-                查看
-                <a
-                  style={{ color: '#f50' }}
-                  onClick={() => {
-                    this.setState(
-                      {
-                        postData: {
-                          ...postData,
-                          faultType: '', //(int)故障名称
-                          repairType: '', //(int)维修类型
-                          repairUserName: '', //(String)维修人姓名
-                          startTime: '', //(String)开始时间
-                          endTime: '', //(String)结束时间
-                          status: '',
-                          shopId: '',
-                        },
-                      },
-                      () => {
-                        this.resetData();
-                      }
-                    );
+                        ? '#f50'
+                        : '#000',
                   }}
                 >
-                  <Icon type="reload" style={{ paddingRight: 4, marginLeft: 8 }} />
-                    重置
-                  </a>
-              </span>
-            ),
-            dataIndex: 'action',
-            key: 'action',
-            render: (text, record) => {
-              return (
-                <div>
+                  {text}
+                </span>
+              ),
+            },
+            {
+              title: (
+                <span
+                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                >
+                  查看
                   <a
+                    style={{ color: '#f50' }}
                     onClick={() => {
-                      this.setNewState('rslgetRepairDetail', { id: record.id }, () => {
-                        this.setState({
-                          visible: true,
-                          iftype: {
-                            name: `查看工单：${record.taskNo}的详情`,
-                            value: 'tosee',
+                      this.setState(
+                        {
+                          postData: {
+                            ...postData,
+                            faultType: '', //(int)故障名称
+                            repairType: '', //(int)维修类型
+                            repairUserName: '', //(String)维修人姓名
+                            startTime: '', //(String)开始时间
+                            endTime: '', //(String)结束时间
+                            status: '',
+                            shopId: '',
                           },
-                        });
-                      });
+                        },
+                        () => {
+                          this.resetData();
+                        }
+                      );
                     }}
                   >
-                    查看详情
+                    <Icon type="reload" style={{ paddingRight: 4, marginLeft: 8 }} />
+                    重置
+                  </a>
+                </span>
+              ),
+              dataIndex: 'action',
+              key: 'action',
+              render: (text, record) => {
+                return (
+                  <div>
+                    <a
+                      onClick={() => {
+                        this.setNewState('rslgetRepairDetail', { id: record.id }, () => {
+                          this.setState({
+                            visible: true,
+                            iftype: {
+                              name: `查看工单：${record.taskNo}的详情`,
+                              value: 'tosee',
+                            },
+                          });
+                        });
+                      }}
+                    >
+                      查看详情
                     </a>
-                </div>
-              );
+                  </div>
+                );
+              },
             },
-          },
-        ]
+          ]
         : [
-          {
-            title: '工单号',
-            dataIndex: 'taskNo',
-            key: 'taskNo',
-            ...getsearchbox('taskNo'),
-          },
-          {
-            title: '故障时间',
-            dataIndex: 'faultTime',
-            key: 'faultTime',
-            ...getdaterangebox('startTime', 'endTime'),
-          },
-          {
-            title: '报修人',
-            dataIndex: 'applyRepairUserName',
-            key: 'applyRepairUserName',
-          },
-          {
-            title: '班次',
-            dataIndex: 'shiftName',
-            key: 'shiftName',
-          },
-          {
-            title: '维修人',
-            dataIndex: 'repairUserName',
-            key: 'repairUserName',
-            ...getsearchbox('repairUserName'),
-          },
-          {
-            title: '确认人',
-            dataIndex: 'confirmUserName',
-            key: 'confirmUserName',
-          },
-          {
-            title: '故障名称',
-            dataIndex: 'faultTypeName',
-            key: 'faultTypeName',
-            render: (text, record) => {
-              return <span>{text}</span>;
+            {
+              title: '工单号',
+              dataIndex: 'taskNo',
+              key: 'taskNo',
+              ...getsearchbox('taskNo'),
             },
-            ...getsearchbox('faultTypeName'),
-          },
-          {
-            title: '故障级别',
-            dataIndex: 'faultLevelName',
-            key: 'faultLevelName',
-            render: text => <span>{text}</span>,
-          },
-          {
-            title: '维修类型',
-            width: 110,
-            dataIndex: 'repairTypeName',
-            key: 'repairTypeName',
-            ...getselectbox('repairType', repairTypeList),
-          },
-          {
-            title: '设备编号',
-            dataIndex: 'equipmentNo',
-            key: 'equipmentNo',
-            ...getsearchbox('equipmentNo'),
-          },
-          {
-            title: '设备位置号',
-            dataIndex: 'positionNo',
-            key: 'positionNo',
-            ...getsearchbox('positionNo'),
-          },
-          {
-            title: '设备名',
-            dataIndex: 'equipmentName',
-            key: 'equipmentName',
-          },
-          {
-            title: '设备型号',
-            dataIndex: 'equipmentModel',
-            key: 'equipmentModel',
-          },
-          {
-            title: '公司',
-            dataIndex: 'companyName',
-            key: 'companyName',
-            ...getselectbox(
-              'companyId',
-              companyList
-                ? companyList.map(item => {
-                  return {
-                    dicName: item.companyName,
-                    dicKey: item.id,
-                  };
-                })
-                : []
-            ),
-          },
-          {
-            title: '产品线',
-            dataIndex: 'shopName',
-            key: 'shopName',
-            ...getselectbox(
-              'shopId',
-              shopList &&
-              shopList.map(item => {
-                return {
-                  dicName: item.shopName,
-                  dicKey: item.id,
-                };
-              })
-            ),
-          },
-          {
-            title: '维修状态',
-            dataIndex: 'statusName',
-            key: 'statusName',
-            ...getselectbox('status', repairStatusList),
-            render: text => (
-              <span
-                style={{
-                  color:
-                    text == '待维修'
-                      ? '#666'
-                      : text == '维修中'
+            {
+              title: '故障时间',
+              dataIndex: 'faultTime',
+              key: 'faultTime',
+              ...getdaterangebox('startTime', 'endTime'),
+            },
+            {
+              title: '报修人',
+              dataIndex: 'applyRepairUserName',
+              key: 'applyRepairUserName',
+            },
+            {
+              title: '班次',
+              dataIndex: 'shiftName',
+              key: 'shiftName',
+            },
+            {
+              title: '维修人',
+              dataIndex: 'repairUserName',
+              key: 'repairUserName',
+              ...getsearchbox('repairUserName'),
+            },
+            {
+              title: '确认人',
+              dataIndex: 'confirmUserName',
+              key: 'confirmUserName',
+            },
+            {
+              title: '故障名称',
+              dataIndex: 'faultTypeName',
+              key: 'faultTypeName',
+              render: (text, record) => {
+                return <span>{text}</span>;
+              },
+              ...getsearchbox('faultTypeName'),
+            },
+            {
+              title: '故障级别',
+              dataIndex: 'faultLevelName',
+              key: 'faultLevelName',
+              render: text => <span>{text}</span>,
+            },
+            {
+              title: '维修类型',
+              width: 110,
+              dataIndex: 'repairTypeName',
+              key: 'repairTypeName',
+              ...getselectbox('repairType', repairTypeList),
+            },
+            {
+              title: '设备编号',
+              dataIndex: 'equipmentNo',
+              key: 'equipmentNo',
+              ...getsearchbox('equipmentNo'),
+            },
+            {
+              title: '设备位置号',
+              dataIndex: 'positionNo',
+              key: 'positionNo',
+              ...getsearchbox('positionNo'),
+            },
+            {
+              title: '设备名',
+              dataIndex: 'equipmentName',
+              key: 'equipmentName',
+            },
+            {
+              title: '设备型号',
+              dataIndex: 'equipmentModel',
+              key: 'equipmentModel',
+            },
+            {
+              title: '公司',
+              dataIndex: 'companyName',
+              key: 'companyName',
+              ...getselectbox(
+                'companyId',
+                companyList
+                  ? companyList.map(item => {
+                      return {
+                        dicName: item.companyName,
+                        dicKey: item.id,
+                      };
+                    })
+                  : []
+              ),
+            },
+            {
+              title: '产品线',
+              dataIndex: 'shopName',
+              key: 'shopName',
+              ...getselectbox(
+                'shopId',
+                shopList &&
+                  shopList.map(item => {
+                    return {
+                      dicName: item.shopName,
+                      dicKey: item.id,
+                    };
+                  })
+              ),
+            },
+            {
+              title: '维修状态',
+              dataIndex: 'statusName',
+              key: 'statusName',
+              ...getselectbox('status', repairStatusList),
+              render: text => (
+                <span
+                  style={{
+                    color:
+                      text == '待维修'
+                        ? '#666'
+                        : text == '维修中'
                         ? 'green'
                         : text == '待验证'
-                          ? '#f50'
-                          : '#000',
-                }}
-              >
-                {text}
-              </span>
-            ),
-          },
-          {
-            title: (
-              <span
-                style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-              >
-                查看
-                <a
-                  style={{ color: '#f50' }}
-                  onClick={() => {
-                    this.setState(
-                      {
-                        postData: {
-                          ...postData,
-                          faultType: '', //(int)故障名称
-                          repairType: '', //(int)维修类型
-                          repairUserName: '', //(String)维修人姓名
-                          startTime: '', //(String)开始时间
-                          endTime: '',
-                          shopId: '',
-                        },
-                      },
-                      () => {
-                        this.resetData();
-                      }
-                    );
+                        ? '#f50'
+                        : '#000',
                   }}
                 >
-                  <Icon type="reload" style={{ paddingRight: 4, marginLeft: 8 }} />
-                    重置
-                  </a>
-              </span>
-            ),
-            dataIndex: 'action',
-            key: 'action',
-            render: (text, record) => {
-              return (
-                <div>
+                  {text}
+                </span>
+              ),
+            },
+            {
+              title: (
+                <span
+                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                >
+                  查看
                   <a
+                    style={{ color: '#f50' }}
                     onClick={() => {
-                      this.setNewState('rslgetRepairDetail', { id: record.id }, () => {
-                        this.setState({
-                          visible: true,
-                          iftype: {
-                            name: `查看工单：${record.taskNo}的详情`,
-                            value: 'tosee',
+                      this.setState(
+                        {
+                          postData: {
+                            ...postData,
+                            faultType: '', //(int)故障名称
+                            repairType: '', //(int)维修类型
+                            repairUserName: '', //(String)维修人姓名
+                            startTime: '', //(String)开始时间
+                            endTime: '',
+                            shopId: '',
                           },
-                        });
-                      });
+                        },
+                        () => {
+                          this.resetData();
+                        }
+                      );
                     }}
                   >
-                    查看详情
+                    <Icon type="reload" style={{ paddingRight: 4, marginLeft: 8 }} />
+                    重置
+                  </a>
+                </span>
+              ),
+              dataIndex: 'action',
+              key: 'action',
+              render: (text, record) => {
+                return (
+                  <div>
+                    <a
+                      onClick={() => {
+                        this.setNewState('rslgetRepairDetail', { id: record.id }, () => {
+                          this.setState({
+                            visible: true,
+                            iftype: {
+                              name: `查看工单：${record.taskNo}的详情`,
+                              value: 'tosee',
+                            },
+                          });
+                        });
+                      }}
+                    >
+                      查看详情
                     </a>
-                </div>
-              );
+                  </div>
+                );
+              },
             },
-          },
-        ];
+          ];
 
     const columnes = [
       {
@@ -920,15 +921,15 @@ class RepairList extends React.Component {
     ];
 
     let pageChange = page => {
-      this.setState(
-        {
-          postData: { ...this.state.postData, pageIndex: page },
-        },
-        () => {
-          this.setNewState('repairqueryList', this.state.postData);
-        }
-      );
-    },
+        this.setState(
+          {
+            postData: { ...this.state.postData, pageIndex: page },
+          },
+          () => {
+            this.setNewState('repairqueryList', this.state.postData);
+          }
+        );
+      },
       col = {
         xs: 24,
         sm: 24,
@@ -1006,8 +1007,8 @@ class RepairList extends React.Component {
             this.props.match.params.key == '1'
               ? '我的待维修列表'
               : this.props.location.query.isCurrentUserAudit == '1'
-                ? '我的撤回审批'
-                : '故障报修列表'
+              ? '我的撤回审批'
+              : '故障报修列表'
           }
           extra={
             <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -1045,7 +1046,7 @@ class RepairList extends React.Component {
                   style={{ color: '#f50' }}
                   to={`/yxt/devices/devicetzlists/devicerepair/${curitem.equipmentId}/${
                     curitem.equipmentName
-                    }`}
+                  }`}
                 >
                   维修
                 </Link>
@@ -1058,11 +1059,11 @@ class RepairList extends React.Component {
                       { id: record.equipmentId, startTime: record.faultTime },
                       () => {
                         let alloption = this.props.repair.queryAllRepair.map(item => {
-                          return {
-                            name: item.userName,
-                            id: item.id,
-                          };
-                        }),
+                            return {
+                              name: item.userName,
+                              id: item.id,
+                            };
+                          }),
                           allname = this.props.repair.queryAllRepair.map(item => {
                             return item.userName;
                           });
@@ -1132,11 +1133,11 @@ class RepairList extends React.Component {
               {chart.repairTypeChart ? (
                 <ReactEcharts option={getOption('repairTypeChart')} />
               ) : (
-                  <Empty
-                    style={{ margin: '12px 0px' }}
-                    description={<span>维修类型统计表 - 暂无数据</span>}
-                  />
-                )}
+                <Empty
+                  style={{ margin: '12px 0px' }}
+                  description={<span>维修类型统计表 - 暂无数据</span>}
+                />
+              )}
             </Col>
             {/* <Col span={12}>
               {
@@ -1396,8 +1397,8 @@ class RepairList extends React.Component {
                         {rslgetRepairDetail.repairUserConfirmBox == '0'
                           ? '不通过'
                           : rslgetRepairDetail.repairUserConfirmBox == '1'
-                            ? '通过'
-                            : ''}
+                          ? '通过'
+                          : ''}
                       </span>
                     </p>
                   </Col>
@@ -1455,13 +1456,13 @@ class RepairList extends React.Component {
                               ? record.applyRepairUser5sConfirm == '0'
                                 ? '5S验证 不通过'
                                 : record.applyRepairUser5sConfirm == '1'
-                                  ? '5S验证 通过'
-                                  : ''
+                                ? '5S验证 通过'
+                                : ''
                               : record.pqcQualityConfirm == '0'
-                                ? '品质验证 不通过'
-                                : record.pqcQualityConfirm == '1'
-                                  ? '品质验证 通过'
-                                  : ''}
+                              ? '品质验证 不通过'
+                              : record.pqcQualityConfirm == '1'
+                              ? '品质验证 通过'
+                              : ''}
                           </span>
                         ),
                       },
