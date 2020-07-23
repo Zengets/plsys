@@ -86,7 +86,7 @@ class StateLine extends Component {
 
   render() {
     let { totals, lists, queryShopsEquipChartLine } = this.props.home,
-      {} = this.state,
+      { } = this.state,
       {
         equipmentCount,
         turnOnRate,
@@ -124,13 +124,13 @@ class StateLine extends Component {
       return color;
     }
     let col = {
-        xs: 24,
-        sm: 24,
-        md: 24,
-        lg: 24,
-        xl: 6,
-        xxl: 6,
-      },
+      xs: 24,
+      sm: 24,
+      md: 24,
+      lg: 24,
+      xl: 6,
+      xxl: 6,
+    },
       cols = {
         xs: 24,
         sm: 24,
@@ -167,8 +167,8 @@ class StateLine extends Component {
       let total = 0;
       arr
         ? arr.map(item => {
-            total += item[val];
-          })
+          total += item[val];
+        })
         : null;
       return total == 0 ? 1 : total;
     };
@@ -262,42 +262,42 @@ class StateLine extends Component {
                     <div style={{ marginTop: 12 }}>
                       {item.equipStatusChart
                         ? item.equipStatusChart.map((now, i) => {
-                            return (
-                              <li
-                                className={styles.hoverables}
+                          return (
+                            <li
+                              className={styles.hoverables}
+                              style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                              }}
+                              key={i}
+                            >
+                              <span style={{ color: getcolor(now.name) }}>
+                                {' '}
+                                <i style={{ padding: 2, color: getcolor(now.name) }} /> {now.name}
+                              </span>
+                              <span style={{ color: getcolor(now.name) }}>{now.value} 台</span>{' '}
+                              <div
+                                className={styles.bacline}
                                 style={{
-                                  display: 'flex',
-                                  justifyContent: 'space-between',
-                                  alignItems: 'center',
+                                  width: `${parseFloat(
+                                    (now.value * 100) / getallNum(item.equipStatusChart, 'value')
+                                  )}%`,
+                                  backgroundColor: getcolor(now.name),
+                                  opacity: 0.4,
                                 }}
-                                key={i}
-                              >
-                                <span style={{ color: getcolor(now.name) }}>
-                                  {' '}
-                                  <i style={{ padding: 2, color: getcolor(now.name) }} /> {now.name}
-                                </span>
-                                <span style={{ color: getcolor(now.name) }}>{now.value} 台</span>{' '}
-                                <div
-                                  className={styles.bacline}
-                                  style={{
-                                    width: `${parseFloat(
-                                      (now.value * 100) / getallNum(item.equipStatusChart, 'value')
-                                    )}%`,
-                                    backgroundColor: getcolor(now.name),
-                                    opacity: 0.4,
-                                  }}
-                                />
-                              </li>
-                            );
-                          })
+                              />
+                            </li>
+                          );
+                        })
                         : null}
                     </div>
                   </Card>
                 </Col>
               ))
             ) : (
-              <Empty />
-            )}
+                <Empty />
+              )}
           </Row>
         </Drawer>
         <Row gutter={12}>
@@ -349,11 +349,11 @@ class StateLine extends Component {
                 <Col {...cold} style={{ margin: '12px 0px' }}>
                   <ChartCard
                     bordered={false}
-                    title="白班实际开线数"
+                    title="夜班计划开线数"
                     total={() => (
                       <span style={{ fontSize: 18 }}>
                         <a style={{ color: '#2997ff', fontSize: 16 }}>
-                          {dayActualTurnOnCount ? dayActualTurnOnCount : 0}
+                          {nightPlanTurnOnCount ? nightPlanTurnOnCount : 0}
                         </a>{' '}
                         台
                       </span>
@@ -363,25 +363,11 @@ class StateLine extends Component {
                 <Col {...cold} style={{ margin: '12px 0px' }}>
                   <ChartCard
                     bordered={false}
-                    title="白班实际开线率"
+                    title="白班实际开线数"
                     total={() => (
                       <span style={{ fontSize: 18 }}>
                         <a style={{ color: '#2997ff', fontSize: 16 }}>
-                          {dayActualTurnOnRate ? dayActualTurnOnRate : 0}
-                        </a>{' '}
-                        %
-                      </span>
-                    )}
-                  />
-                </Col>
-                <Col {...cold} style={{ margin: '12px 0px' }}>
-                  <ChartCard
-                    bordered={false}
-                    title="夜班计划开线数"
-                    total={() => (
-                      <span style={{ fontSize: 18 }}>
-                        <a style={{ color: '#2997ff', fontSize: 16 }}>
-                          {nightPlanTurnOnCount ? nightPlanTurnOnCount : 0}
+                          {dayActualTurnOnCount ? dayActualTurnOnCount : 0}
                         </a>{' '}
                         台
                       </span>
@@ -406,6 +392,22 @@ class StateLine extends Component {
                 <Col {...cold} style={{ margin: '12px 0px' }}>
                   <ChartCard
                     bordered={false}
+                    title="白班实际开线率"
+                    total={() => (
+                      <span style={{ fontSize: 18 }}>
+                        <a style={{ color: '#2997ff', fontSize: 16 }}>
+                          {dayActualTurnOnRate ? dayActualTurnOnRate : 0}
+                        </a>{' '}
+                        %
+                      </span>
+                    )}
+                  />
+                </Col>
+
+
+                <Col {...cold} style={{ margin: '12px 0px' }}>
+                  <ChartCard
+                    bordered={false}
                     title="夜班实际开线率"
                     total={() => (
                       <span style={{ fontSize: 18 }}>
@@ -427,36 +429,36 @@ class StateLine extends Component {
                   >
                     {equipStatusChart
                       ? equipStatusChart.map((item, i) => {
-                          return (
-                            <li
-                              className={styles.hoverables}
+                        return (
+                          <li
+                            className={styles.hoverables}
+                            style={{
+                              display: 'flex',
+                              justifyContent: 'space-between',
+                              alignItems: 'center',
+                            }}
+                            key={i}
+                            onClick={() => {
+                              this.jumpUrl(item.name);
+                            }}
+                          >
+                            <span style={{ color: getcolor(item.name) }}>
+                              <i style={{ padding: 2, color: getcolor(item.name) }} /> {item.name}
+                            </span>
+                            <span style={{ color: getcolor(item.name) }}>{item.value}</span>
+                            <div
+                              className={styles.bacline}
                               style={{
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                                alignItems: 'center',
+                                width: `${parseFloat(
+                                  (item.value * 100) / getallNum(equipStatusChart, 'value')
+                                )}%`,
+                                backgroundColor: getcolor(item.name),
+                                opacity: 0.5,
                               }}
-                              key={i}
-                              onClick={() => {
-                                this.jumpUrl(item.name);
-                              }}
-                            >
-                              <span style={{ color: getcolor(item.name) }}>
-                                <i style={{ padding: 2, color: getcolor(item.name) }} /> {item.name}
-                              </span>
-                              <span style={{ color: getcolor(item.name) }}>{item.value}</span>
-                              <div
-                                className={styles.bacline}
-                                style={{
-                                  width: `${parseFloat(
-                                    (item.value * 100) / getallNum(equipStatusChart, 'value')
-                                  )}%`,
-                                  backgroundColor: getcolor(item.name),
-                                  opacity: 0.5,
-                                }}
-                              />
-                            </li>
-                          );
-                        })
+                            />
+                          </li>
+                        );
+                      })
                       : null}
                   </Card>
                 </Col>
@@ -478,14 +480,14 @@ class StateLine extends Component {
                     </a>
                   )
                 ) : (
-                  <a
-                    onClick={() => {
-                      this.resetData();
-                    }}
-                  >
-                    查看汇总
-                  </a>
-                )
+                    <a
+                      onClick={() => {
+                        this.resetData();
+                      }}
+                    >
+                      查看汇总
+                    </a>
+                  )
               }
             >
               {lists && lists.length > 0 ? (
@@ -499,35 +501,35 @@ class StateLine extends Component {
                             onClick={() => {
                               item.id
                                 ? this.setNewState('queryEquipChartByCompanyIdLine', {
-                                    companyId: item.id,
-                                  })
+                                  companyId: item.id,
+                                })
                                 : null;
                             }}
                           >
                             查看详情
                           </a>
                         ) : (
-                          <a
-                            onClick={() => {
-                              this.setState(
-                                {
-                                  visible: true,
-                                },
-                                () => {
-                                  this.setNewState(
-                                    'queryShopsEquipChartLine',
-                                    { shopName: item.name },
-                                    () => {
-                                      console.log(queryShopsEquipChartLine);
-                                    }
-                                  );
-                                }
-                              );
-                            }}
-                          >
-                            横向对比
-                          </a>
-                        )
+                            <a
+                              onClick={() => {
+                                this.setState(
+                                  {
+                                    visible: true,
+                                  },
+                                  () => {
+                                    this.setNewState(
+                                      'queryShopsEquipChartLine',
+                                      { shopName: item.name },
+                                      () => {
+                                        console.log(queryShopsEquipChartLine);
+                                      }
+                                    );
+                                  }
+                                );
+                              }}
+                            >
+                              横向对比
+                            </a>
+                          )
                       }
                     >
                       <Row>
@@ -598,44 +600,44 @@ class StateLine extends Component {
                       <div style={{ marginTop: 12 }}>
                         {item.equipStatusChart
                           ? item.equipStatusChart.map((now, i) => {
-                              return (
-                                <li
-                                  className={styles.hoverables}
+                            return (
+                              <li
+                                className={styles.hoverables}
+                                style={{
+                                  display: 'flex',
+                                  justifyContent: 'space-between',
+                                  alignItems: 'center',
+                                }}
+                                key={i}
+                              >
+                                <span style={{ color: getcolor(now.name) }}>
+                                  {' '}
+                                  <i style={{ padding: 2, color: getcolor(now.name) }} />{' '}
+                                  {now.name}
+                                </span>
+                                <span style={{ color: getcolor(now.name) }}>{now.value} 台</span>{' '}
+                                <div
+                                  className={styles.bacline}
                                   style={{
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
+                                    width: `${parseFloat(
+                                      (now.value * 100) /
+                                      getallNum(item.equipStatusChart, 'value')
+                                    )}%`,
+                                    backgroundColor: getcolor(now.name),
+                                    opacity: 0.4,
                                   }}
-                                  key={i}
-                                >
-                                  <span style={{ color: getcolor(now.name) }}>
-                                    {' '}
-                                    <i style={{ padding: 2, color: getcolor(now.name) }} />{' '}
-                                    {now.name}
-                                  </span>
-                                  <span style={{ color: getcolor(now.name) }}>{now.value} 台</span>{' '}
-                                  <div
-                                    className={styles.bacline}
-                                    style={{
-                                      width: `${parseFloat(
-                                        (now.value * 100) /
-                                          getallNum(item.equipStatusChart, 'value')
-                                      )}%`,
-                                      backgroundColor: getcolor(now.name),
-                                      opacity: 0.4,
-                                    }}
-                                  />
-                                </li>
-                              );
-                            })
+                                />
+                              </li>
+                            );
+                          })
                           : null}
                       </div>
                     </Card>
                   </Col>
                 ))
               ) : (
-                <Empty />
-              )}
+                  <Empty />
+                )}
             </Card>
           </Col>
         </Row>
