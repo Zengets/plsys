@@ -13,7 +13,7 @@ let allOk = JSON.parse(npm_config_argv).original,
 
 let IpAndPort =
   allStr.indexOf('4399') != -1
-    ? 'http://172.21.3.137:8400/'
+    ? 'http://172.21.3.232:8400/'
     : allStr.indexOf('8001') != -1
     ? 'http://172.21.3.155:8400/'
     : allStr.indexOf('8400') != -1
@@ -56,7 +56,7 @@ const plugins = [
             },
           }
         : {},
-       ...(!TEST && os.platform() === 'darwin'
+      ...(!TEST && os.platform() === 'darwin'
         ? {
             dll: {
               include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch'],
